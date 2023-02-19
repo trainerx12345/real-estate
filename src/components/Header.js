@@ -21,7 +21,7 @@ const Header = () => {
 						Log In
 					</Link>
 					<Link
-						className='px-4 py-3 text-white transition rounded-lg hover:text-violet-700 bg-violet'
+						className='px-4 py-3 text-white transition rounded-lg hover:bg-white hover:text-violet-700 bg-violet-800'
 						to='/signup'
 					>
 						Sign up

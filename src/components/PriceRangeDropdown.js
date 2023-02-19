@@ -8,8 +8,9 @@ import {
 
 import { Menu } from '@headlessui/react';
 import { HouseContext } from './HouseContext';
+
 const PriceRangeDropdown = () => {
-	const [price, setPrice] = useContext(HouseContext);
+	const { price, setPrice } = useContext(HouseContext);
 	const [isOpen, setIsOpen] = useState(false);
 	const prices = [
 		{ value: 'Price range (any)' },
@@ -29,10 +30,10 @@ const PriceRangeDropdown = () => {
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
-				className='dropdown-btn'
+				className='w-full text-left dropdown-btn'
 			>
-				<RiWallet3Fill className='w-full text-left dropdown-icon-primary' />
-				<div>
+				<RiWallet3Fill className='dropdown-icon-primary' />
+				<div className='w-full'>
 					<div className='text-[15px] font-medium leading-tight '>{price}</div>
 					<div className='text-[13px]'>Choose price range</div>
 				</div>
@@ -44,16 +45,18 @@ const PriceRangeDropdown = () => {
 			</Menu.Button>
 
 			<Menu.Items className='dropdown-menu'>
-				{prices.map((price, index) => {
+				{prices.map((item, index) => {
 					return (
 						<Menu.Item
 							onClick={() => {
-								setPrice(price);
+								setPrice(item.value);
 							}}
-							className='transition cursor-pointer hover-text-violet-700'
+							className='transition cursor-pointer hover:text-violet-700'
 							as='li'
 							key={index}
-						/>
+						>
+							{item.value}
+						</Menu.Item>
 					);
 				})}
 			</Menu.Items>

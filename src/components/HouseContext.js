@@ -1,10 +1,10 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-import { houseData } from '../data';
-export const HouseContext = createContext;
+import { housesData } from '../data';
+export const HouseContext = createContext();
 
 const HouseContextProvider = ({ children }) => {
-	const [houses, setHouses] = useState(houseData);
+	const [houses, setHouses] = useState(housesData);
 	const [country, setCountry] = useState('Location (any)');
 	const [countries, setCountries] = useState([]);
 	const [property, setProperty] = useState('Property (any)');
@@ -16,7 +16,6 @@ const HouseContextProvider = ({ children }) => {
 		const allCountries = houses.map((house) => {
 			return house.country;
 		});
-
 		const uniqueCountries = ['Location (any)', ...new Set(allCountries)];
 		setCountries(uniqueCountries);
 	}, []);
@@ -25,15 +24,16 @@ const HouseContextProvider = ({ children }) => {
 		const allProperties = houses.map((house) => {
 			return house.type;
 		});
-
 		const uniqueProperties = ['Location (any)', ...new Set(allProperties)];
 		setProperties(uniqueProperties);
 	}, []);
 
-	const handleClick = () => {};
+	const handleClick = () => {
+		console.log('click');
+	};
 
 	return (
-		<HouseContextProvider
+		<HouseContext.Provider
 			value={{
 				country,
 				setCountry,
@@ -49,7 +49,7 @@ const HouseContextProvider = ({ children }) => {
 			}}
 		>
 			{children}
-		</HouseContextProvider>
+		</HouseContext.Provider>
 	);
 };
 

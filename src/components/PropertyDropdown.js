@@ -5,7 +5,7 @@ import { RiHome5Line, RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { Menu } from '@headlessui/react';
 import { HouseContext } from './HouseContext';
 const PropertyDropdown = () => {
-	const [property, setProperty, properties] = useContext(HouseContext);
+	const { property, setProperty, properties } = useContext(HouseContext);
 	const [isOpen, setIsOpen] = useState(false);
 	return (
 		<Menu
@@ -16,10 +16,10 @@ const PropertyDropdown = () => {
 				onClick={() => {
 					setIsOpen(!isOpen);
 				}}
-				className='dropdown-btn'
+				className='w-full text-left dropdown-btn'
 			>
-				<RiHome5Line className='w-full text-left dropdown-icon-primary' />
-				<div>
+				<RiHome5Line className='dropdown-icon-primary' />
+				<div className='w-full'>
 					<div className='text-[15px] font-medium leading-tight '>
 						{property}
 					</div>
@@ -33,16 +33,18 @@ const PropertyDropdown = () => {
 			</Menu.Button>
 
 			<Menu.Items className='dropdown-menu'>
-				{properties.map((property, index) => {
+				{properties.map((item, index) => {
 					return (
 						<Menu.Item
 							onClick={() => {
-								setProperty(property);
+								setProperty(item);
 							}}
-							className='transition cursor-pointer hover-text-violet-700'
+							className='transition cursor-pointer hover:text-violet-700'
 							as='li'
 							key={index}
-						/>
+						>
+							{item}
+						</Menu.Item>
 					);
 				})}
 			</Menu.Items>
